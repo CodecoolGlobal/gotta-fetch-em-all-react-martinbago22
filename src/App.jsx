@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Locations from './components/Locations'
 import Areas from './components/Areas';
+import Pokemon from './components/Pokemon';
 
 function App() {
   const [page, SetPage] = useState('Location');
@@ -20,7 +21,6 @@ function App() {
   return (
     <>
     {area ? (<Areas url={area} onPokemon={handleEnemyPokemon}/>) : (<Locations onSelect={handleClick}></Locations>)}
-    
     </>
   )
 }
