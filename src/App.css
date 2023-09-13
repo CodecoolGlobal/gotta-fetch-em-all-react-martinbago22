@@ -1,42 +1,90 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+} */
+
+@font-face {
+  font-family: pokeFont;
+  src: url("./Pokemon_Hollow.ttf");
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+#locationPage {
+  background-color: rgb(70, 196, 70);
+  width: 100vw;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.title {
+  font-family: pokeFont;
+  font-size: 80px;
+  color: black;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+#locations {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.card {
-  padding: 2em;
+
+.location {
+  background-color: azure;
+  height: 250px;
+  width: 300px;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: black;
+  margin: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.read-the-docs {
-  color: #888;
+.locationName {
+  margin-top: 50px;
+}
+
+.locationButton {
+  width: 100px;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: rgb(29, 29, 83);
+  border-width: 2px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  background-color: aliceblue;
+}
+
+.locationButton:hover {
+  border-color: rgb(20, 79, 0);
+  background-color: rgb(188, 254, 217);
+  color: rgb(20, 79, 0);
+}
+
+#areaPage {
+  background-color: rgb(70, 196, 70);
+  width: 100vw;
+  align-content: center;
+}
+
+#areas{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#encounterPage {
+  width: 100vw;
+  background-image: url("https://i.pinimg.com/originals/2b/3b/04/2b3b04771ccca26c3dd96d781b0117ca.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }

@@ -24,14 +24,18 @@ export default function Locations({ onSelect }) {
 
   return (
     <div id="locationPage">
-      <h1>Locations</h1>
-      {locations && locations.map((location) => {
-        return <div className="location" key={location.name}>{location.name}
-          <button type="button"
-           data-url={location.url}
-           onClick={() => handleVisitButton(location.url)}>Visit</button>
-        </div>
-      })}
+      <h2 className="title">Locations</h2>
+      <div id="locations">
+        {locations && locations.map((location) => {
+          return <div className="location" key={location.name}>
+            <span className='locationName'>{location.name}</span>
+            <button type="button"
+              className='locationButton'
+              data-url={location.url}
+              onClick={() => handleVisitButton(location.url)}>Visit</button>
+          </div>
+        })}
+      </div>
     </div>
   )
 }
