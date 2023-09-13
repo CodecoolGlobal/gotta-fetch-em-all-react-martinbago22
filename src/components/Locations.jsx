@@ -23,7 +23,8 @@ export default function Locations({ onSelect }) {
   }
 
   return (
-    <div id="locationPage">Locations
+    <div id="locationPage">
+      <h1>Locations</h1>
       {locations && locations.map((location) => {
         return <div className="location" key={location.name}>{location.name}
           <button type="button"

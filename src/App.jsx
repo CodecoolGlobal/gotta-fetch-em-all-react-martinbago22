@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Locations from './components/Locations'
 import Areas from './components/Areas';
@@ -9,6 +9,7 @@ function App() {
   const [page, SetPage] = useState('Location');
   const [area, setArea] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
+  const [playerPokemon, setPlayerPokemon] = useState(null);
   const playerPokemons = ['pikachu', 'vulpix', 'psyduck', 'squirtle'];
 
   function handleClick(locationUrl) {
@@ -25,8 +26,9 @@ function App() {
     SetPage(page);
   }
 
-  function handleChooseButton(location) {
-    SetPage(location)
+  function handleChooseButton(location, playerPokemon) {
+    SetPage(location);
+    setPlayerPokemon(playerPokemon);
   }
 
 
@@ -41,7 +43,7 @@ function App() {
   } else if (page === 'Encounter') {
     return <Encounter playerPokemons={playerPokemons} enemyPokemon={enemyPokemon} onChoose={handleChooseButton}></Encounter>
   } else if (page === 'Fight') {
-    return <Fight enemyPokeName={enemyPokemon} playerPokeName={playerPokemons[0]}></Fight>
+    return <Fight enemyPokeName={enemyPokemon} playerPokeName={playerPokemon}></Fight>
   }
 }
 
