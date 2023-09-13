@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-export default function Areas({ url, onPokemon }) {
+export default function Areas({ url, onPokemon, onBack }) {
 
   const [areas, setAreas] = useState(null);
-  const [encounterArea, setEncounterArea] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,34 +15,37 @@ export default function Areas({ url, onPokemon }) {
       }
     }
     fetchData();
-  }, [])
+  }, [url])
 
-  const generateRandomPokemon = () => {
-    const numberOfPokemons = Math.floor(Math.random() * encounterArea['pokemon_encounters'].length)
-    onPokemon(encounterArea['pokemon_encounters'][numberOfPokemons].pokemon.name) 
+  const generateRandomPokemon = (area) => {
+    const numberOfPokemons = Math.floor(Math.random() * area['pokemon_encounters'].length)
+    onPokemon(area['pokemon_encounters'][numberOfPokemons].pokemon.name)
   }
 
-  const handleEncounter = (e) => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(e.target.getAttribute('data-url'));
-        const area = await response.json();
-        setEncounterArea(area)
-      } catch (err) {
-        console.error(err)
-      }
+
+
+  const handleEncounter = async (url) => {
+    try {
+      const response = await fetch(url);
+      const area = await response.json();
+      generateRandomPokemon(area);
+    } catch (err) {
+      console.error(err)
     }
-    fetchData()
-    generateRandomPokemon()
+  }
+
+  function handleBackButton() {
+    onBack('Location')
   }
 
   return (
     <div id="areas">
       {areas && areas.map((area) => {
         return <div key={area.name} className='location'>{area.name}
-          <button onClick={(e) => handleEncounter(e)} data-url={area.url}>Encounter</button>
+          <button onClick={() => handleEncounter(area.url)}>Encounter</button>
         </div>
       })}
+      <button className="button" onClick={handleBackButton}>Back</button>
     </div>
   )
 }
