@@ -7,6 +7,7 @@ export default function Encounter({ playerPokemons, enemyPokemon, onChoose }) {
   }
   return (
     <>
+    <div id="encounterPage">
       <div>
         <Pokemon pokemon={enemyPokemon}></Pokemon>
         {console.log(<Pokemon pokemon='bulbasaur' />)}
@@ -18,6 +19,7 @@ export default function Encounter({ playerPokemons, enemyPokemon, onChoose }) {
             <button onClick={() => handleChooseButton('Fight')}>Choose</button>
           </>
         })}
+      </div>
       </div>
     </>
   )

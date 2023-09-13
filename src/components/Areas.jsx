@@ -39,13 +39,17 @@ export default function Areas({ url, onPokemon, onBack }) {
   }
 
   return (
-    <div id="areas">
-      {areas && areas.map((area) => {
-        return <div key={area.name} className='location'>{area.name}
-          <button onClick={() => handleEncounter(area.url)}>Encounter</button>
-        </div>
-      })}
-      <button className="button" onClick={handleBackButton}>Back</button>
+    <div id="areaPage">
+      <h2 className="title">Areas</h2>
+      <div id="areas">
+        {areas && areas.map((area) => {
+          return <div key={area.name} className='location'>
+            <span className="locationName">{area.name}</span>
+            <button onClick={() => handleEncounter(area.url)}>Encounter</button>
+          </div>
+        })}
+      </div>
+        <button className="button" onClick={handleBackButton}>Back</button>
     </div>
   )
 }
