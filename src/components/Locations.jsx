@@ -30,7 +30,7 @@ export default function Locations({ onSelect }) {
            data-url={location.url}
            onClick={() => handleVisitButton(location.url)}>Visit</button>
         </div>
-      })};
+      })}
     </div>
   )
 }
