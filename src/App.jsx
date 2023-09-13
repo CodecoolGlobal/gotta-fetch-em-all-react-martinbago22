@@ -11,18 +11,28 @@ function App() {
 
   function handleClick(locationUrl) {
     setArea(locationUrl);
+    SetPage('Area');
   }
 
   function handleEnemyPokemon(pokemon){
-    setEnemyPokemon(pokemon)
-    console.log(enemyPokemon)
+    setEnemyPokemon(pokemon);
+    SetPage('Encounter');
   }
 
-  return (
-    <>
-    {area ? (<Areas url={area} onPokemon={handleEnemyPokemon}/>) : (<Locations onSelect={handleClick}></Locations>)}
-    </>
-  )
+  function handleBackButton(page) {
+    SetPage(page);
+  }
+  if (page === 'Location') {
+    return (
+      <Locations onSelect={handleClick}></Locations>
+    )
+  } else if (page === 'Area') {
+    return (
+      <Areas url={area} onPokemon={handleEnemyPokemon} onBack={handleBackButton}/>
+    )
+  } else if (page === 'Encounter') {
+    return<Pokemon pokemon={enemyPokemon}></Pokemon>
+  }
 }
 
 export default App
