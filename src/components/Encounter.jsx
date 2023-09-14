@@ -42,15 +42,16 @@ export default function Encounter({ playerPokemonsName, enemyPokemonName, onChoo
   if (allPokemons.length !== 0) {
     return <>
       <div id="encounterPage">
-        <div>
-          <h1>Enemy</h1>
+        <div className="enemyPokemon">
           <Pokemon pokemon={enemyPokemon}></Pokemon>
         </div>
-        <div>Your Pokemons
+        <div className="playerPokemons">
           {allPokemons.map((pokemon) => {
             return <>
+            <div className="pokeWithButton">
               <Pokemon pokemon={pokemon} key={pokemon}></Pokemon>
-              <button onClick={() => handleChooseButton(pokemon)}>Choose</button>
+              <button className="chooseButton" onClick={() => handleChooseButton(pokemon)}>Choose</button>
+              </div>
             </>
           })}
         </div>
