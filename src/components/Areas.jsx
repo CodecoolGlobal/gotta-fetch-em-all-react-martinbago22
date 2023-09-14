@@ -38,18 +38,22 @@ export default function Areas({ url, onPokemon, onBack }) {
     onBack('Location')
   }
 
+  function convertName(name){
+    return name.split('-').map((name) => name[0].toUpperCase() + name.slice(1)).join(' ');
+  }
+
   return (
     <div id="areaPage">
       <h2 className="title">Areas</h2>
       <div id="areas">
         {areas && areas.map((area) => {
           return <div key={area.name} className='location'>
-            <span className="locationName">{area.name}</span>
-            <button onClick={() => handleEncounter(area.url)}>Encounter</button>
+            <span className="locationName">{convertName(area.name)}</span>
+            <button className="areaButton" onClick={() => handleEncounter(area.url)}>Encounter</button>
           </div>
         })}
       </div>
-        <button className="button" onClick={handleBackButton}>Back</button>
+        <button className="back" onClick={handleBackButton}>Back</button>
     </div>
   )
 }
