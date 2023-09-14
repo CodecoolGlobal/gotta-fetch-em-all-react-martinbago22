@@ -22,13 +22,17 @@ export default function Locations({ onSelect }) {
     onSelect(locationUrl);
   }
 
+    function convertName(name){
+      return name.split('-').map((name) => name[0].toUpperCase() + name.slice(1)).join(' ');
+    }
+
   return (
     <div id="locationPage">
       <h2 className="title">Locations</h2>
       <div id="locations">
         {locations && locations.map((location) => {
           return <div className="location" key={location.name}>
-            <span className='locationName'>{location.name}</span>
+            <span className='locationName'>{convertName(location.name)}</span>
             <button type="button"
               className='locationButton'
               data-url={location.url}
