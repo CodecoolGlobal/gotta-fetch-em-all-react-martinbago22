@@ -57,9 +57,12 @@ export default function Fight({ enemy, player }) {
     <>
       <h2 className="title">Fight!</h2>
       <div className="pokeFight">
+        <div className="fightingPokemons">
         <Pokemon name={enemy.name} pokemon={enemyPokemon} />
         <Pokemon name={player.name} pokemon={playerPokemon} />
+        </div>
         <button onClick={() => handleFight(true)}>Fight!</button>
       </div>
     </>
   )
+}
