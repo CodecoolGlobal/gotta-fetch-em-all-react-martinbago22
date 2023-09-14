@@ -10,7 +10,6 @@ export default function Pokemon({ pokemon }) {
             try {
                 const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
                 const data = await response.json();
-                console.log(data);
                 setPokemonData(data);
                 setPokemonHp(data.stats[0]["base_stat"]);
             } catch (err) {
