@@ -30,8 +30,8 @@ function App() {
   function handleChooseButton(playerPokemon1, enemyPokemon) {
     setPlayerPokemon(playerPokemon1);
     setEnemyPokemon(enemyPokemon);
-    console.log('ez a player', playerPokemon1);
-    console.log('ez az enemy', enemyPokemon);
+    //console.log('ez a player', playerPokemon1);
+    //console.log('ez az enemy', enemyPokemon);
     SetPage('Fight');
   }
 
@@ -46,7 +46,7 @@ function App() {
   } else if (page === 'Encounter') {
     return <Encounter playerPokemonsName={playerPokemons} enemyPokemonName={enemyPokemonName} onChoose={handleChooseButton}></Encounter>
   } else if (page === 'Fight' && enemyPokemon && playerPokemon) {
-    return <Fight playerPokemon={playerPokemon} enemyPokemon={enemyPokemon}></Fight>
+    return <Fight player={playerPokemon} enemy={enemyPokemon}></Fight>
   }
 }
 

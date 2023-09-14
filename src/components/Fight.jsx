@@ -2,17 +2,19 @@ import { useState } from "react";
 import Pokemon from "./Pokemon";
 
 export default function Fight({ enemy, player }) {
-  
+
   const [enemyPokemon, setEnemyPokemon] = useState(enemy);
   const [playerPokemon, setPlayerPokemon] = useState(player);
-  let playerTurn = true;
+  //const [playerTurn, setPlayerTurn] = useState(true);
+
 
   function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
-  
-  function handleFightClick() {
+
+  function handleFight(playerTurn) {
     if (playerTurn) {
+      console.log('player turn');
       const enemyDefense = enemyPokemon.stats[2]["base_stat"];
       const playerAttack = playerPokemon.stats[1]["base_stat"];
       const randomZ = randomNumber(217, 255);
@@ -21,10 +23,17 @@ export default function Fight({ enemy, player }) {
         ...enemyPokemon, stats: [...enemyPokemon.stats]
       };
       updatedEnemyPokemon.stats[0]['base_stat'] -= damage;
-      playerTurn = false;
-      setEnemyPokemon(updatedEnemyPokemon);
+      if (updatedEnemyPokemon.stats[0]['base_stat'] > 0) {
+        //setPlayerTurn(false);
+        console.log(playerTurn);
+        setEnemyPokemon(updatedEnemyPokemon);
+        setTimeout(() => handleFight(!playerTurn), 200);
+      } else {
+        setEnemyPokemon(updatedEnemyPokemon);
+      }
 
-    } else if (!playerTurn) {
+    } else {
+      console.log('enemy turn');
       const enemyAttack = enemyPokemon.stats[1]["base_stat"];
       const playerDefense = playerPokemon.stats[2]["base_stat"];
       const randomZ = randomNumber(217, 255);
@@ -33,20 +42,24 @@ export default function Fight({ enemy, player }) {
         ...playerPokemon, stats: [...playerPokemon.stats]
       };
       updatedPlayerPokemon.stats[0]['base_stat'] -= damage;
-      playerTurn = true;
-      setPlayerPokemon(updatedPlayerPokemon);
+      if (updatedPlayerPokemon.stats[0]['base_stat'] > 0) {
+        //setPlayerTurn(true);
+        console.log(playerTurn);
+        setPlayerPokemon(updatedPlayerPokemon);
+        setTimeout(() => handleFight(!playerTurn), 200);
+      } else {
+        setPlayerPokemon(updatedPlayerPokemon);
+      }
     }
   }
-
 
   return (
     <>
       <h2 className="title">Fight!</h2>
       <div className="pokeFight">
-        <Pokemon name={enemyPokemon.name} pokemon={enemyPokemon} />
-        <Pokemon name={playerPokemon.name} pokemon={playerPokemon} />
-        <button onClick={handleFightClick}>Fight!</button>
+        <Pokemon name={enemy.name} pokemon={enemyPokemon} />
+        <Pokemon name={player.name} pokemon={playerPokemon} />
+        <button onClick={() => handleFight(true)}>Fight!</button>
       </div>
     </>
   )
-}
