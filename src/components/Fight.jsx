@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Pokemon from "./Pokemon";
 
-export default function Fight({ enemy, player }) {
+export default function Fight({ enemy, player, onHome }) {
 
   const [enemyPokemon, setEnemyPokemon] = useState(enemy);
   const [playerPokemon, setPlayerPokemon] = useState(player);
   //const [playerTurn, setPlayerTurn] = useState(true);
+  const [playerWin, setPlayerWin] = useState(false);
+  const [enemyWin, setEnemyWin] = useState(false);
 
 
   function randomNumber(min, max) {
@@ -30,6 +32,7 @@ export default function Fight({ enemy, player }) {
         setTimeout(() => handleFight(!playerTurn), 200);
       } else {
         setEnemyPokemon(updatedEnemyPokemon);
+        setPlayerWin(true)
       }
 
     } else {
@@ -49,20 +52,41 @@ export default function Fight({ enemy, player }) {
         setTimeout(() => handleFight(!playerTurn), 200);
       } else {
         setPlayerPokemon(updatedPlayerPokemon);
+        setEnemyWin(true);
       }
     }
   }
 
-  return (
-    <>
-      <h2 className="title">Fight!</h2>
-      <div className="pokeFight">
-        <div className="fightingPokemons">
-        <Pokemon name={enemy.name} pokemon={enemyPokemon} />
-        <Pokemon name={player.name} pokemon={playerPokemon} />
+  function handleHomeButton(page) {
+    onHome(page)
+  }
+
+  if (playerWin) {
+    return (
+      <>
+        <h1>You win!</h1>
+        <button onClick={() => handleHomeButton('Location')}>Home page</button>
+      </>
+    )
+  }
+  if (enemyWin) {
+    return (
+      <>
+        <h1>You lose!</h1>
+        <button onClick={() => handleHomeButton('Location')}>Home page</button>
+      </>)
+  } else {
+    return (
+      <>
+        <h2 className="title">Fight!</h2>
+        <div className="pokeFight">
+          <div className="fightingPokemons">
+            <Pokemon name={enemy.name} pokemon={enemyPokemon} />
+            <Pokemon name={player.name} pokemon={playerPokemon} />
+          </div>
+          <button onClick={() => handleFight(true)}>Fight!</button>
         </div>
-        <button onClick={() => handleFight(true)}>Fight!</button>
-      </div>
-    </>
-  )
+      </>
+    )
+  }
 }

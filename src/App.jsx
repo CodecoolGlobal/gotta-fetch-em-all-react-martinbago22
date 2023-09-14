@@ -15,27 +15,27 @@ function App() {
   const [enemyPokemon, setEnemyPokemon] = useState(null);
   const [playerPokemon, setPlayerPokemon] = useState(null);
   const playerPokemons = [
-    {name: 'hapff', types: [{slots: 1, type: 'psychic'}], 
+    {name: 'hapff', types: [{slots: 1, type: {name: 'psychic'}}], 
     sprites: {other: {['official-artwork']: {front_default: druImage}}}, 
     stats: [
       {base_stat: 666},
       {base_stat: 666},
       {base_stat: 666}
     ]},
-    {name: 'pretepnuk', types: [{slots: 1, type: 'fairy'}], 
+    {name: 'pretepnuk', types: [{slots: 1, type: {name: 'fairy'}}], 
     sprites: {other: {['official-artwork']: {front_default: petImage}}}, 
     stats: [
       {base_stat: 420},
       {base_stat: 69},
       {base_stat: 1}
     ]},
-    {name: 'pushúú', types: [{slots: 1, type: 'psychic'}], 
+    {name: 'pushúú', types: [{slots: 1, type: {name: 'ghost'}}], 
     sprites: {other: {['official-artwork']: {front_default: bagImage}}}, 
     stats: [
       {base_stat: 69},
       {base_stat: 420},
       {base_stat: 0}
-    ]}
+    ]},
   ];
 
   function handleClick(locationUrl) {
@@ -58,6 +58,10 @@ function App() {
     SetPage('Fight');
   }
 
+  function handleHomeButton(page) {
+    SetPage(page);
+  }
+
   if (page === 'Location') {
     return (
       <Locations onSelect={handleClick}></Locations>
@@ -69,7 +73,7 @@ function App() {
   } else if (page === 'Encounter') {
     return <Encounter playerPokemons={playerPokemons} enemyPokemonName={enemyPokemonName} onChoose={handleChooseButton}></Encounter>
   } else if (page === 'Fight' && enemyPokemon && playerPokemon) {
-    return <Fight player={playerPokemon} enemy={enemyPokemon}></Fight>
+    return <Fight player={playerPokemon} enemy={enemyPokemon} onHome={handleHomeButton}></Fight>
   }
 }
 
