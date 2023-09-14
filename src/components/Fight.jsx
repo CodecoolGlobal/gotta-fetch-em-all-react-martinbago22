@@ -71,7 +71,9 @@ export default function Fight({ enemyPokeName, playerPokeName }) {
   return enemyPokemon && playerPokemon ?
 
     (
-      <><h1>Fight!</h1>
+      <>
+      <h2 className="title">Fight!</h2>
+      <div className="pokeFight">
         <FighterPokemon name={enemyPokemon.name}
           sprite={enemyPokemon.sprites.other["official-artwork"]["front_default"]}
           types={enemyPokemon.types}
@@ -87,6 +89,7 @@ export default function Fight({ enemyPokeName, playerPokeName }) {
           def={playerPokemon.stats[2]["base_stat"]}
         ></FighterPokemon>
         <button onClick={handleFightClick}>Attack!</button>
+        </div>
       </>
     ) : 'Loading';
 }
