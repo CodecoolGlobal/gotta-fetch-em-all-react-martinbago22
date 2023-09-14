@@ -4,6 +4,9 @@ import Locations from './components/Locations'
 import Areas from './components/Areas';
 import Encounter from './components/Encounter';
 import Fight from './components/Fight';
+import druImage from './images/dru.jpg';
+import petImage from './images/pti.jpg';
+import bagImage from './images/bgo.jpg';
 
 function App() {
   const [page, SetPage] = useState('Location');
@@ -11,7 +14,29 @@ function App() {
   const [enemyPokemonName, setEnemyPokemonName] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
   const [playerPokemon, setPlayerPokemon] = useState(null);
-  const playerPokemons = ['pikachu', 'vulpix', 'psyduck', 'squirtle'];
+  const playerPokemons = [
+    {name: 'hapff', types: [{slots: 1, type: 'psychic'}], 
+    sprites: {other: {['official-artwork']: {front_default: druImage}}}, 
+    stats: [
+      {base_stat: 666},
+      {base_stat: 666},
+      {base_stat: 666}
+    ]},
+    {name: 'pretepnuk', types: [{slots: 1, type: 'fairy'}], 
+    sprites: {other: {['official-artwork']: {front_default: petImage}}}, 
+    stats: [
+      {base_stat: 420},
+      {base_stat: 69},
+      {base_stat: 1}
+    ]},
+    {name: 'pushúú', types: [{slots: 1, type: 'psychic'}], 
+    sprites: {other: {['official-artwork']: {front_default: bagImage}}}, 
+    stats: [
+      {base_stat: 69},
+      {base_stat: 420},
+      {base_stat: 0}
+    ]}
+  ];
 
   function handleClick(locationUrl) {
     setArea(locationUrl);
@@ -30,8 +55,6 @@ function App() {
   function handleChooseButton(playerPokemon1, enemyPokemon) {
     setPlayerPokemon(playerPokemon1);
     setEnemyPokemon(enemyPokemon);
-    //console.log('ez a player', playerPokemon1);
-    //console.log('ez az enemy', enemyPokemon);
     SetPage('Fight');
   }
 
@@ -44,7 +67,7 @@ function App() {
       <Areas url={area} onPokemon={handleEnemyPokemon} onBack={handleBackButton} />
     )
   } else if (page === 'Encounter') {
-    return <Encounter playerPokemonsName={playerPokemons} enemyPokemonName={enemyPokemonName} onChoose={handleChooseButton}></Encounter>
+    return <Encounter playerPokemons={playerPokemons} enemyPokemonName={enemyPokemonName} onChoose={handleChooseButton}></Encounter>
   } else if (page === 'Fight' && enemyPokemon && playerPokemon) {
     return <Fight player={playerPokemon} enemy={enemyPokemon}></Fight>
   }

@@ -1,7 +1,9 @@
 export default function Pokemon({ pokemon }) {  
 
     return (
-        (<div className="pokemon" data-class={pokemon.types[0].type.name}>
+        (<div className="pokemon" 
+        // data-class={pokemon.types[0].type.name}
+        >
             <h2>{pokemon.name}</h2>
             <img src={pokemon.sprites.other["official-artwork"]["front_default"]} />
             <div className="pokemonTypes">

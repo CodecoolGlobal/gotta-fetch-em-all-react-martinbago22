@@ -17,7 +17,7 @@ async function fetchPlayerPokemons(names) {
   return playerPokemons;
 }
 
-export default function Encounter({ playerPokemonsName, enemyPokemonName, onChoose }) {
+export default function Encounter({ playerPokemons, enemyPokemonName, onChoose }) {
 
   const [chosenPokemon, setChosenPokemon] = useState(null);
   const [allPokemons, setAllPokemons] = useState([]);
@@ -26,17 +26,19 @@ export default function Encounter({ playerPokemonsName, enemyPokemonName, onChoo
   function handleChooseButton(pokemon) {
     setChosenPokemon(pokemon);
     onChoose(pokemon, enemyPokemon);
+    console.log(pokemon);
   }
 
   useEffect(() => {
     const task = async () => {
-      const fetchedPlayer = await fetchPlayerPokemons(playerPokemonsName);
+      // const fetchedPlayer = await fetchPlayerPokemons(playerPokemonsName);
       const fetchedEnemy = await fetchEnemyPokemon(enemyPokemonName);
       setEnemyPokemon(fetchedEnemy);
-      setAllPokemons(fetchedPlayer);
+      setAllPokemons(playerPokemons);
+      console.log(playerPokemons);
     }
     task();
-  }, [playerPokemonsName, enemyPokemonName])
+  }, [enemyPokemonName, playerPokemons])
 
 
   if (allPokemons.length !== 0) {
