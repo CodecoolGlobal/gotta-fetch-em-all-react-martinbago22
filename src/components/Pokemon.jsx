@@ -22,15 +22,15 @@ export default function Pokemon({ pokemon }) {
 
     if (pokemonData && pokemonHp) {
         return (
-            (<div className="pokemon">
+            (<div className="pokemon" data-class={pokemonData.types[0].type.name}>
                 <h2>{pokemonData.name}</h2>
                 <img src={pokemonData.sprites.other["official-artwork"]["front_default"]} />
                 <div className="pokemonTypes">
                     {pokemonData.types.map(type => {
-                        return <div key={type.type.name}>{type.type.name}</div>
+                        return <div className={type.type.name} key={type.type.name}>{type.type.name}</div>
                     })}
                 </div>
-                <div>
+                <div className="stats">
                     <h2>HP: {pokemonHp}</h2>
                     <h2>ATT: {pokemonData.stats[1]["base_stat"]}</h2>
                     <h2>DEF: {pokemonData.stats[2]["base_stat"]}</h2>
