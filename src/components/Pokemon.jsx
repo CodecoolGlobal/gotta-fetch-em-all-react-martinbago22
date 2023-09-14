@@ -1,4 +1,4 @@
-export default function Pokemon({ pokemon }) {
+export default function Pokemon({ pokemon }) {  
 
     return (
         (<div className="pokemon" data-class={pokemon.types[0].type.name}>
