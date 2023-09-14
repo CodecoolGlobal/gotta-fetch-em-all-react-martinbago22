@@ -1,3 +1,7 @@
+body{
+  background-color: rgb(70, 196, 70);
+}
+
 @font-face {
   font-family: pokeFont;
   src: url("./Pokemon_Hollow.ttf");
@@ -15,6 +19,7 @@
   font-weight: bold;
   margin: auto;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 #locations {
@@ -23,7 +28,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-
 
 .location {
   background-color: azure;
@@ -106,15 +110,42 @@
   background-size: cover;
   background-attachment: fixed;
 }
+.enemyPokemon{
+  display: flex;
+  justify-content: center;
+}
+
+.playerPokemons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.pokeWithButton{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.chooseButton{
+  width: 120px;
+}
 
 .pokeFight{
   width: 100vw;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
 }
 
+.fightingPokemons{
+  display: flex;
+
+}
+
 img {
-  width: 150px;
+  width: 120px;
   background-color: white;
   border-style: solid;
   border-color: black;
@@ -136,6 +167,7 @@ h2 {
   border-style: solid;
   border-color: black;
   border-width: 1px;
+  margin: 10px;
 }
 
 .stats {
