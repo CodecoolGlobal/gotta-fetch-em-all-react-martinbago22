@@ -53,7 +53,7 @@ export default function Fight({ enemy, player, onBack }) {
     }
   }
 
-if (!result) {
+if ( !result ) {
   return (
     <>
       <h2 className="title">Fight!</h2>
@@ -66,14 +66,14 @@ if (!result) {
       </div>
     </>
   )
-} else if (result === 'win') {
+} else if ( result === 'win' ) {
   return (
     <>
       <h1 className="title">You win!!!</h1>
       <button className="back" onClick={handleBackButton}>The advnenture continues</button>
     </>
   )
-} else if (result === 'lose') {
+} else if ( result === 'lose' ) {
   return (
     <>
       <h1 className="title">You lose!!!</h1>
