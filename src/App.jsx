@@ -8,10 +8,10 @@ import Fight from './components/Fight';
 function App() {
   const [page, SetPage] = useState('Location');
   const [area, setArea] = useState(null);
+  const [enemyPokemonName, setEnemyPokemonName] = useState(null);
   const [enemyPokemon, setEnemyPokemon] = useState(null);
   const [playerPokemon, setPlayerPokemon] = useState(null);
   const playerPokemons = ['pikachu', 'vulpix', 'psyduck', 'squirtle'];
-  const [fightingPokemons, setFightingPokemons] = useState(null);
 
   function handleClick(locationUrl) {
     setArea(locationUrl);
@@ -19,7 +19,7 @@ function App() {
   }
 
   function handleEnemyPokemon(pokemon) {
-    setEnemyPokemon(pokemon);
+    setEnemyPokemonName(pokemon);
     SetPage('Encounter');
   }
 
@@ -27,12 +27,13 @@ function App() {
     SetPage(page);
   }
 
-
-  function handleFightButton(fightingPokemons) {
-    setFightingPokemons(fightingPokemons);
+  function handleChooseButton(playerPokemon1, enemyPokemon) {
+    setPlayerPokemon(playerPokemon1);
+    setEnemyPokemon(enemyPokemon);
+    console.log('ez a player', playerPokemon1);
+    console.log('ez az enemy', enemyPokemon);
     SetPage('Fight');
   }
-
 
   if (page === 'Location') {
     return (
@@ -43,9 +44,9 @@ function App() {
       <Areas url={area} onPokemon={handleEnemyPokemon} onBack={handleBackButton} />
     )
   } else if (page === 'Encounter') {
-    return <Encounter playerPokemons={playerPokemons} enemyPokemon={enemyPokemon} onFight={handleFightButton}></Encounter>
-  } else if (page === 'Fight') {
-    return <Fight pokemons={fightingPokemons}></Fight>
+    return <Encounter playerPokemonsName={playerPokemons} enemyPokemonName={enemyPokemonName} onChoose={handleChooseButton}></Encounter>
+  } else if (page === 'Fight' && enemyPokemon && playerPokemon) {
+    return <Fight playerPokemon={playerPokemon} enemyPokemon={enemyPokemon}></Fight>
   }
 }
 

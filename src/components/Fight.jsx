@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import FighterPokemon from "./FighterPokemon";
 
-export default function Fight({ pokemons }) {
+export default function Fight({ playerPokemon, enemyPokemon }) {
 
-  const [enemyPokemon, setEnemyPokemon] = useState(null);
-  const [playerPokemon, setPlayerPokemon] = useState(null);
-  const [playerPhase, setPlayerPhase] = useState(false);
-  const [enemyPhase, setEnemyPhase] = useState(false);
+  // const [enemyPokemon, setEnemyPokemon] = useState(null);
+  // const [playerPokemon, setPlayerPokemon] = useState(null);
+  // const [playerPhase, setPlayerPhase] = useState(false);
+  // const [enemyPhase, setEnemyPhase] = useState(false);
 
 
-
+  console.log(enemyPokemon);
   // function handleFightClick() {
   //   setPlayerPhase(true);
   // }
@@ -74,7 +74,5 @@ export default function Fight({ pokemons }) {
   //     </>
   //   ) : 'Loading';
 
-  return (
-    pokemons ? pokemons.map((pokemon) => <div key={1}>{pokemon.name}</div>) : 'Loading'
-  )
+   return  enemyPokemon ? <div>{enemyPokemon.name}{playerPokemon.name}</div> : <div>Kaki</div>
 }
