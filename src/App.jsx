@@ -46,7 +46,7 @@ function App() {
   } else if (page === 'Encounter') {
     return <Encounter playerPokemonsName={playerPokemons} enemyPokemonName={enemyPokemonName} onChoose={handleChooseButton}></Encounter>
   } else if (page === 'Fight' && enemyPokemon && playerPokemon) {
-    return <Fight player={playerPokemon} enemy={enemyPokemon}></Fight>
+    return <Fight player={playerPokemon} enemy={enemyPokemon} onBack={handleBackButton}></Fight>
   }
 }
 
