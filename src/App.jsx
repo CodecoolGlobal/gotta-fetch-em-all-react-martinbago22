@@ -11,13 +11,14 @@ function App() {
   const [enemyPokemon, setEnemyPokemon] = useState(null);
   const [playerPokemon, setPlayerPokemon] = useState(null);
   const playerPokemons = ['pikachu', 'vulpix', 'psyduck', 'squirtle'];
+  const [fightingPokemons, setFightingPokemons] = useState(null);
 
   function handleClick(locationUrl) {
     setArea(locationUrl);
     SetPage('Area');
   }
 
-  function handleEnemyPokemon(pokemon){
+  function handleEnemyPokemon(pokemon) {
     setEnemyPokemon(pokemon);
     SetPage('Encounter');
   }
@@ -26,9 +27,10 @@ function App() {
     SetPage(page);
   }
 
-  function handleChooseButton(location, playerPokemon) {
-    SetPage(location);
-    setPlayerPokemon(playerPokemon);
+
+  function handleFightButton(fightingPokemons) {
+    setFightingPokemons(fightingPokemons);
+    SetPage('Fight');
   }
 
 
@@ -38,12 +40,12 @@ function App() {
     )
   } else if (page === 'Area') {
     return (
-      <Areas url={area} onPokemon={handleEnemyPokemon} onBack={handleBackButton}/>
+      <Areas url={area} onPokemon={handleEnemyPokemon} onBack={handleBackButton} />
     )
   } else if (page === 'Encounter') {
-    return <Encounter playerPokemons={playerPokemons} enemyPokemon={enemyPokemon} onChoose={handleChooseButton}></Encounter>
+    return <Encounter playerPokemons={playerPokemons} enemyPokemon={enemyPokemon} onFight={handleFightButton}></Encounter>
   } else if (page === 'Fight') {
-    return <Fight enemyPokeName={enemyPokemon} playerPokeName={playerPokemon}></Fight>
+    return <Fight pokemons={fightingPokemons}></Fight>
   }
 }
 

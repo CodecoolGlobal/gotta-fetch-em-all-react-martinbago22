@@ -18,8 +18,8 @@ export default function Areas({ url, onPokemon, onBack }) {
   }, [url])
 
   const generateRandomPokemon = (area) => {
-    const numberOfPokemons = Math.floor(Math.random() * area['pokemon_encounters'].length)
-    onPokemon(area['pokemon_encounters'][numberOfPokemons].pokemon.name)
+    const numberOfPokemons = Math.floor(Math.random() * area['pokemon_encounters'].length);
+    onPokemon(area['pokemon_encounters'][numberOfPokemons].pokemon.name);
   }
 
 
