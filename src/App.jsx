@@ -32,9 +32,9 @@ function App() {
     {name: 'pushúú', types: [{slots: 1, type: {name: 'ghost'}}], 
     sprites: {other: {['official-artwork']: {front_default: bagImage}}}, 
     stats: [
-      {base_stat: 69},
-      {base_stat: 420},
-      {base_stat: 0}
+      {base_stat: 100},
+      {base_stat: 60},
+      {base_stat: 40}
     ]},
   ];
 
@@ -58,8 +58,8 @@ function App() {
     SetPage('Fight');
   }
 
-  function handleHomeButton(page) {
-    SetPage(page);
+  function handleHomeButton() {
+    SetPage('Location');
   }
 
   if (page === 'Location') {

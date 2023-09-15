@@ -57,15 +57,11 @@ export default function Fight({ enemy, player, onHome }) {
     }
   }
 
-  function handleHomeButton(page) {
-    onHome(page)
-  }
-
   if (playerWin) {
     return (
       <>
         <h1>You win!</h1>
-        <button onClick={() => handleHomeButton('Location')}>Home page</button>
+        <button onClick={onHome}>Home page</button>
       </>
     )
   }
@@ -73,7 +69,7 @@ export default function Fight({ enemy, player, onHome }) {
     return (
       <>
         <h1>You lose!</h1>
-        <button onClick={() => handleHomeButton('Location')}>Home page</button>
+        <button onClick={onHome}>Home page</button>
       </>)
   } else {
     return (

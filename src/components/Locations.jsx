@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 export default function Locations({ onSelect }) {
 
-  const [locations, SetLocations] = useState(null);
+  const [locations, setLocations] = useState(null);
 
   useEffect(() => {
 
@@ -10,17 +10,13 @@ export default function Locations({ onSelect }) {
       try {
         const response = await fetch('https://pokeapi.co/api/v2/location');
         const locations = await response.json();
-        SetLocations(locations.results);
+        setLocations(locations.results);
       } catch (err) {
         console.error(err);
       }
     }
     fetchLocations();
   }, [])
-
-  function handleVisitButton(locationUrl) {
-    onSelect(locationUrl);
-  }
 
     function convertName(name){
       return name.split('-').map((name) => name[0].toUpperCase() + name.slice(1)).join(' ');
@@ -36,7 +32,7 @@ export default function Locations({ onSelect }) {
             <button type="button"
               className='locationButton'
               data-url={location.url}
-              onClick={() => handleVisitButton(location.url)}>Visit</button>
+              onClick={() => onSelect(location.url)}>Visit</button>
           </div>
         })}
       </div>
